@@ -4,13 +4,15 @@ module.exports = function (grunt) {
 	var path = require('path');
 	var _ = grunt.util._;
 
-	grunt.registerMultiTask('bower', 'Wire-up Bower components in RJS config', function () {
+	//grunt.registerMultiTask('bower', 'Wire-up Bower components in RJS config', function () {
+	grunt.registerMultiTask('MCB-require', 'Wire-up Bower components in RJS config', function () {
 		var cb = this.async();
 		var excludes = this.options({exclude: []}).exclude;
 		var configDir = path.dirname(this.data.rjsConfig);
 		var baseUrl = this.options({ baseUrl: configDir }).baseUrl;
 		var filePath = this.data.rjsConfig;
 		var file = grunt.file.read(filePath);
+		var dlls = this.data.dlls;
 
 		// remove extensions from js files but ignore folders
 		function stripJS(val) {
@@ -104,7 +106,7 @@ module.exports = function (grunt) {
 								}
 							});
 
-							_.extend(config.paths, data);
+							_.extend(config.paths, data, dlls);
 							return config;
 						});
 
