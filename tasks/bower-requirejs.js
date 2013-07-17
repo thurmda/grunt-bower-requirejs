@@ -13,7 +13,12 @@ module.exports = function (grunt) {
 		var filePath = this.data.rjsConfig;
 		var file = grunt.file.read(filePath);
 		var dlls = this.data.dlls;
+		var pathAdjustment = this.data.pathAdjustment;
 
+		// Adjust path relatie to mcb
+		function adjustPath(val, adjustment) {
+            return val.replace(adjustment.regexp, adjustment.substr);
+        }
 		// remove extensions from js files but ignore folders
 		function stripJS(val) {
 			var newPath;
@@ -106,6 +111,11 @@ module.exports = function (grunt) {
 								}
 							});
 
+                            if(typeof(pathAdjustment) !== 'undefined' ){
+							    _.forOwn(data, function(val, key, obj) {
+                                    obj[key] = adjustPath(val, pathAdjustment);
+                                });
+                            }
 							_.extend(config.paths, data, dlls);
 							return config;
 						});
