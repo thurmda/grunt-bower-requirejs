@@ -31,7 +31,7 @@ module.exports = function (grunt) {
 			return newPath;
 		}
 
-		require('bower').commands.list({paths: true})
+        require('bower').commands.list({paths: true})
 			.on('data', function (data) {
 				var rjsConfig;
 
@@ -58,7 +58,9 @@ module.exports = function (grunt) {
 						// continue to use the original value.
 						// if we find any Gruntfiles, remove them and log a warning.
 						if (!_.isArray(val) && grunt.file.isDir(val)) {
-							var main = grunt.file.expand({ cwd: val }, '*.js', '!*.min.js');
+							//var main = grunt.file.expand({ cwd: val }, '*.js', '!*.min.js');
+                            //exclude dopey stuff like index.js and -min.js
+							var main = grunt.file.expand({ cwd: val }, '*.js', '!*min.js', '!index.js');
 							if (_.contains(main, 'grunt.js') || _.contains(main, 'Gruntfile.js')) {
 								grunt.log.writeln('Warning: Ignoring Gruntfile in ' + key);
 								grunt.log.writeln('You should inform the author to ignore this file in their bower.json');
