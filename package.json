@@ -1,6 +1,6 @@
 {
   "name": "grunt-MCB-require",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "Automagically wire-up installed Bower components into your RequireJS config",
   "keywords": [
     "gruntplugin",
@@ -37,9 +37,6 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "requirejs": "~2.1.5"
-  },
-  "devDependencies": {
     "matchdep": "~0.1.1",
     "grunt": "~0.4.0",
     "grunt-contrib-jshint": "~0.4.3",
@@ -47,6 +44,9 @@
     "grunt-contrib-copy": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.1.2",
     "bower": "~0.x"
+   "requirejs": "~2.1.5"
+  },
+  "devDependencies": {
   },
   "peerDependencies": {
     "grunt": "~0.4.0",
