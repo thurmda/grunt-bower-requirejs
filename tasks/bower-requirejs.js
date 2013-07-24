@@ -13,7 +13,7 @@ module.exports = function (grunt) {
 		var filePath = this.data.rjsConfig;
 		var file = grunt.file.read(filePath);
 		var dlls = this.data.dlls;
-		var pathAdjustment = this.data.pathAdjustment;
+		var requirejsConfig = this.data.requirejs;
 
 		// Adjust path relatie to mcb
 		function adjustPath(val, adjustment) {
@@ -111,10 +111,14 @@ module.exports = function (grunt) {
 								}
 							});
 
-                            if(typeof(pathAdjustment) !== 'undefined' ){
+                            if(typeof(requirejsConfig) !== 'undefined' ){
 							    _.forOwn(data, function(val, key, obj) {
-                                    obj[key] = adjustPath(val, pathAdjustment);
+                                    obj[key] = adjustPath(val, requirejsConfig.pathAdjustment);
+                                    if(typeof(requirejsConfig.alias) !== 'undefined' && typeof(requirejsConfig.alias[key]) !== 'undefined'){
+                                        obj[requirejsConfig.alias[key]] = adjustPath(val, requirejsConfig.pathAdjustment);
+                                    }
                                 });
+                                
                             }
 							_.extend(config.paths, data, dlls);
 							return config;
