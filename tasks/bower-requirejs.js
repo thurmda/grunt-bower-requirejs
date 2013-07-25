@@ -120,6 +120,11 @@ module.exports = function (grunt) {
                                         obj[requirejsConfig.alias[key]] = adjustPath(val, requirejsConfig.pathAdjustment);
                                     }
                                 });
+							    _.forOwn(dlls, function(val, key, obj) {
+                                     if(typeof(requirejsConfig.alias) !== 'undefined' && typeof(requirejsConfig.alias[key]) !== 'undefined'){
+                                        obj[requirejsConfig.alias[key]] = adjustPath(val, requirejsConfig.pathAdjustment);
+                                    }
+                                });
                                 
                             }
 							_.extend(config.paths, data, dlls);

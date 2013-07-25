@@ -1,6 +1,6 @@
 {
   "name": "grunt-MCB-require",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "description": "Automagically wire-up installed Bower components into your RequireJS config",
   "keywords": [
     "gruntplugin",
